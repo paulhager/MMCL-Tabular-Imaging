@@ -1,0 +1,46 @@
+# @package _global_
+defaults:
+ - _self_
+
+target: dvm
+task: classification
+
+num_classes: 286
+weights:
+live_loading: True
+delete_segmentation: False
+balanced_accuracy: False
+eval_metric: acc
+data_orig:
+low_data_splits: ['_0.1']
+
+labels_train: labels_model_all_train_all_views.pt 
+labels_val: labels_model_all_val_all_views.pt 
+
+data_train_imaging: train_paths_all_views_scratch.pt
+data_val_imaging: val_paths_all_views_scratch.pt
+
+data_train_tabular: dvm_features_train_noOH_all_views_physical_jittered_50.csv
+data_val_tabular: dvm_features_val_noOH_all_views_physical_jittered_50.csv
+
+field_lengths_tabular: tabular_lengths_all_views_physical.pt
+
+
+data_train_eval_tabular: dvm_features_train_noOH_all_views_physical_jittered_50.csv
+labels_train_eval_tabular: labels_model_all_train_all_views.pt 
+
+data_val_eval_tabular: dvm_features_val_noOH_all_views_physical_jittered_50.csv
+labels_val_eval_tabular: labels_model_all_val_all_views.pt 
+
+data_test_eval_tabular: dvm_features_test_noOH_all_views_physical_jittered_50.csv 
+labels_test_eval_tabular: labels_model_all_test_all_views.pt 
+
+
+data_train_eval_imaging: train_paths_all_views_scratch_0.1.pt
+labels_train_eval_imaging: labels_model_all_train_all_views_0.1.pt
+
+data_val_eval_imaging: val_paths_all_views_scratch.pt
+labels_val_eval_imaging: labels_model_all_val_all_views.pt
+
+data_test_eval_imaging: test_paths_all_views_scratch.pt
+labels_test_eval_imaging: labels_model_all_test_all_views.pt

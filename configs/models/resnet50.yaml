@@ -1,0 +1,11 @@
+# @package _global_
+defaults:
+  - _self_
+
+model: resnet50
+lr: 3.e-3
+img_size: 128
+embedding_dim: 2048
+
+lr_imaging: 3.e-3
+lr_tabular: 3.e-4

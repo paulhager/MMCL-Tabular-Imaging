@@ -1,0 +1,21 @@
+# @package _global_
+defaults:
+ - _self_
+ - targets: CAD_original
+
+num_classes: 2
+weights:
+live_loading: False
+delete_segmentation: True
+balanced_accuracy: False
+eval_metric: auc
+data_orig:
+task: classification
+
+data_train_tabular: cardiac_features_train_imputed_noOH.csv
+data_val_tabular: cardiac_features_val_imputed_noOH.csv
+
+data_train_imaging: cardiac_sa_es_ed_mm_train.pt
+data_val_imaging: cardiac_sa_es_ed_mm_val.pt
+
+field_lengths_tabular: tabular_lengths.pt

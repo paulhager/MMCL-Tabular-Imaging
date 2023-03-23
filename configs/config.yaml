@@ -1,0 +1,145 @@
+defaults:
+  - _self_
+  - models: resnet50
+  - dataset: cardiac_new
+
+# Command Center
+pretrain: False
+run_eval: True
+
+seeds: 
+  - 2022
+  - 2023
+  - 2024
+  - 2025
+  - 2026
+lr_finder_lrs: 
+  - 3.e-2
+  - 1.e-2
+  - 3.e-3
+  - 1.e-3
+  - 3.e-4
+  - 1.e-4
+multitarget:
+
+wandb_entity: 
+data_base: 
+num_workers: 48
+
+wandb_project: 
+sql_address: 
+
+
+# Multimodal
+weight_decay: 1.e-4
+scheduler: anneal
+anneal_max_epochs: 200
+warmup_epochs: 10
+temperature: 0.1
+projection_dim: 128
+use_projection_head: True
+
+loss: clip
+view: augmented
+lambda_0: 0.5
+momentum: 0.99
+
+train_similarity_matrix:
+val_similarity_matrix: 
+threshold: 0.9
+similarity_divisor: 2
+
+tabular_pretrain_checkpoint:
+pretrained_tabular_strategy: frozen
+imaging_pretrain_checkpoint:
+pretrained_imaging_strategy: trainable
+
+multiple_lr: False
+
+batch_size: 512
+lr_eval: 1.e-3
+weight_decay_eval: 0
+val_check_interval: 1.0
+check_val_every_n_epoch: 1
+
+# Classifier
+classifier_num_layers: 2
+lr_classifier: 3.e-4
+weight_decay_classifier: 1.e-4
+online_mlp: True
+
+# Imaging
+augmentation_rate: 0.95
+crop_scale_lower: 0.08
+
+# tabular
+corruption_rate: 0.3
+one_hot: True
+eval_one_hot: True
+
+encoder_num_layers: 2
+projector_num_layers: 1
+init_strat: kaiming
+
+# Evaluator
+generate_embeddings: False
+keep_projector: False
+eval_train_augment_rate: 0.8
+eval_classifier: linear
+finetune_strategy: frozen
+
+vec2vec: False
+checkpoint_vec2vec: 
+
+checkpoint:
+datatype:
+eval_datatype:
+
+# General
+seed: 2022
+max_epochs: 500
+log_images: False
+use_wandb: True
+limit_train_batches: 1.0
+limit_val_batches: 1.0
+limit_test_batches: 1.0
+enable_progress_bar: True
+offline: False
+evaluate: True
+test: False
+test_and_eval: False
+combine_train_and_val: False
+weighted_sampler: False
+classifier_freq: 5
+unit_test: False
+
+transform:
+version:
+input_size:
+transform_train:
+transform_val:
+transform_test:
+dataset_length:
+resume_training:
+wandb_id:
+
+labels_train_short:
+labels_val_short:
+data_train_tabular_short:
+data_val_tabular_short:
+data_train_imaging_short:
+data_val_imaging_short:
+field_lengths_tabular_short:
+data_train_eval_tabular_short:
+labels_train_eval_tabular_short:
+data_val_eval_tabular_short:
+labels_val_eval_tabular_short:
+data_test_eval_tabular_short:
+labels_test_eval_tabular_short:
+data_train_eval_imaging_short:
+labels_train_eval_imaging_short:
+data_val_eval_imaging_short:
+labels_val_eval_imaging_short:
+data_test_eval_imaging_short:
+labels_test_eval_imaging_short:
+train_similarity_matrix_short:

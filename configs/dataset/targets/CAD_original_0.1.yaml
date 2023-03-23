@@ -1,0 +1,29 @@
+# @package _global_
+defaults:
+ - _self_
+
+target: CAD_original
+low_data_splits: ['_0.1']
+
+labels_train: labels_CAD_train_all.pt 
+labels_val: labels_CAD_val_all.pt 
+
+
+data_train_eval_tabular: cardiac_features_train_imputed_noOH_CAD.csv
+labels_train_eval_tabular: labels_CAD_train.pt 
+
+data_val_eval_tabular: cardiac_features_val_imputed_noOH_CAD.csv
+labels_val_eval_tabular: labels_CAD_val.pt 
+
+data_test_eval_tabular: cardiac_features_test_imputed_noOH_CAD.csv
+labels_test_eval_tabular: labels_CAD_test.pt 
+
+
+data_train_eval_imaging: cardiac_sa_es_ed_mm_CAD_train_0.1.pt  
+labels_train_eval_imaging: labels_CAD_train_0.1.pt
+
+data_val_eval_imaging: cardiac_sa_es_ed_mm_CAD_val.pt
+labels_val_eval_imaging: labels_CAD_val.pt 
+
+data_test_eval_imaging: cardiac_sa_es_ed_mm_test.pt
+labels_test_eval_imaging: labels_CAD_test_all.pt 
