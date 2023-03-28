@@ -4,6 +4,8 @@ Please cite our CVPR paper, [Best of Both Worlds: Multimodal Contrastive Learnin
 
 ## Instructions
 
+Install environment using `conda env create --file environment.yaml`. 
+
 To run, execute `python run.py`.
 
 ### Arguments - Command Line
