@@ -363,4 +363,3 @@ dependencies:
     - torch-tb-profiler==0.4.0
     - xgboost==1.7.4
     - xmltodict==0.13.0
-prefix: /home/paulhager/anaconda3/envs/selfsuper
