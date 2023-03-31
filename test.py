@@ -53,18 +53,6 @@ class TestFullRuns(unittest.TestCase):
       self.run_process(controller.control, args)
 
   #@unittest.skip
-  def test_imaging_pretraining_checkpoint_old(self) -> None:
-    with initialize(version_base=None, config_path='./configs'):
-      args = compose(config_name='config', overrides=['+experiment=testing', 'paths=tower_cardiac','checkpoint=/home/paulhager/Projects/MultimodalContrastiveLearning/runs/imaging/wandering-donkey-167/checkpoint_last_epoch_499.ckpt','++wandb_project=Cardiac_Tabular_Multimodal'])
-      self.run_process(controller.control, args)
-
-  #@unittest.skip
-  def test_imaging_pretraining_checkpoint(self) -> None:
-    with initialize(version_base=None, config_path='./configs'):
-      args = compose(config_name='config', overrides=['+experiment=testing', 'paths=tower_cardiac','checkpoint=/home/paulhager/Projects/MultimodalContrastiveLearning/runs/imaging/twilight-sun-289/checkpoint_last_epoch_499.ckpt','++wandb_project=Cardiac_Tabular_Multimodal'])
-      self.run_process(controller.control, args)
-
-  #@unittest.skip
   def test_imaging_pretraining_byol(self) -> None:
     with initialize(version_base=None, config_path='./configs'):
       args = compose(config_name='config', overrides=['+experiment=testing', 'paths=tower_cardiac', 'datatype=imaging', 'pretrain=True', 'loss=byol'])
@@ -92,30 +80,6 @@ class TestFullRuns(unittest.TestCase):
   def test_multimodal_pretraining(self) -> None:
     with initialize(version_base=None, config_path='./configs'):
       args = compose(config_name='config', overrides=['+experiment=testing', 'paths=tower_cardiac', 'datatype=multimodal', 'pretrain=True'])
-      self.run_process(controller.control, args)
-
-  #@unittest.skip
-  def test_multimodal_pretraining_checkpoint_imaging_eval_old(self) -> None:
-    with initialize(version_base=None, config_path='./configs'):
-      args = compose(config_name='config', overrides=['+experiment=testing', 'paths=tower_cardiac', 'checkpoint=/home/paulhager/Projects/MultimodalContrastiveLearning/runs/multimodal/still-donkey-168/checkpoint_last_epoch_499.ckpt','++wandb_project=Cardiac_Tabular_Multimodal'])
-      self.run_process(controller.control, args)
-
-  #@unittest.skip
-  def test_multimodal_pretraining_checkpoint_imaging_eval(self) -> None:
-    with initialize(version_base=None, config_path='./configs'):
-      args = compose(config_name='config', overrides=['+experiment=testing', 'paths=tower_cardiac', 'checkpoint=/home/paulhager/Projects/MultimodalContrastiveLearning/runs/multimodal/ruby-microwave-291/checkpoint_last_epoch_499.ckpt','++wandb_project=Cardiac_Tabular_Multimodal'])
-      self.run_process(controller.control, args)
-
-  #@unittest.skip
-  def test_multimodal_pretraining_checkpoint_tabular_eval(self) -> None:
-    with initialize(version_base=None, config_path='./configs'):
-      args = compose(config_name='config', overrides=['+experiment=testing', 'paths=tower_cardiac', 'checkpoint=/home/paulhager/Projects/MultimodalContrastiveLearning/runs/multimodal/ruby-microwave-291/checkpoint_last_epoch_499.ckpt', 'eval_datatype=tabular','++wandb_project=Cardiac_Tabular_Multimodal'])
-      self.run_process(controller.control, args)
-
-  #@unittest.skip
-  def test_multimodal_pretraining_checkpoint_imaging_tabular_eval(self) -> None:
-    with initialize(version_base=None, config_path='./configs'):
-      args = compose(config_name='config', overrides=['+experiment=testing', 'paths=tower_cardiac', 'checkpoint=/home/paulhager/Projects/MultimodalContrastiveLearning/runs/multimodal/ruby-microwave-291/checkpoint_last_epoch_499.ckpt', 'eval_datatype=imaging_and_tabular','++wandb_project=Cardiac_Tabular_Multimodal'])
       self.run_process(controller.control, args)
   
   #@unittest.skip
