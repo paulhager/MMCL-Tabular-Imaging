@@ -51,9 +51,9 @@ def run(args: DictConfig, queue: Queue = None):
   base_dir = os.path.dirname(os.path.abspath(sys.argv[0]))
   if args.use_wandb:
     if args.resume_training and args.wandb_id:
-      wandb_logger = WandbLogger(project=args.wandb_project, entity='', save_dir=base_dir, offline=args.offline, id=args.wandb_id, resume='must')
+      wandb_logger = WandbLogger(project=args.wandb_project, entity=args.wandb_entity, save_dir=base_dir, offline=args.offline, id=args.wandb_id, resume='must')
     else:
-      wandb_logger = WandbLogger(project=args.wandb_project, entity='', save_dir=base_dir, offline=args.offline)
+      wandb_logger = WandbLogger(project=args.wandb_project, entity=args.wandb_entity, save_dir=base_dir, offline=args.offline)
   else:
     wandb_logger = WandbLogger(project='Test', entity='', save_dir=base_dir, offline=args.offline)
   args.wandb_id = wandb_logger.version
