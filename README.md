@@ -24,7 +24,7 @@ Most arguments are set to those in the paper and work well out of the box. Defau
 
 Code is integrated with weights and biases, so set `wandb_project` and `wandb_entity` in [config.yaml](configs/config.yaml).
 
-Path to folder containing data is set through the `database` argument and then joined with filenames set in the dataset yamls. Best strategy is to take [dvm_all_server.yaml](configs/dataset/dvm_all) as a template and fill in the appropriate filenames. 
+Path to folder containing data is set through the `data_base` argument and then joined with filenames set in the dataset yamls. Best strategy is to take [dvm_all_server.yaml](configs/dataset/dvm_all) as a template and fill in the appropriate filenames. 
 - For the images, provide a .pt with a list of your images or a list of the paths to your images.
   - If providing a list of paths, set `live_loading=True`.
 - `delete_segmentation` deletes the first channel of a three channel image (historical reasons) and should typically be left to false.
