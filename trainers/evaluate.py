@@ -9,23 +9,14 @@ from torch.utils.data.sampler import WeightedRandomSampler
 from datasets.ImageDataset import ImageDataset
 from datasets.TabularDataset import TabularDataset
 from datasets.ImagingAndTabularDataset import ImagingAndTabularDataset
-from datasets.ImageDataset_ImageNet import ImageDataset_ImageNet
 from models.Evaluator import Evaluator
 from models.Evaluator_regression import Evaluator_Regression
 from utils.utils import grab_arg_from_checkpoint, grab_hard_eval_image_augmentations, grab_wids, create_logdir
 
 def load_datasets(hparams):
   if hparams.datatype == 'imaging' or hparams.datatype == 'multimodal':
-    if hparams.target == 'ImageNet':
-      wids_0 = grab_wids(hparams.majority_class)
-      wids_1 = grab_wids(hparams.minority_class)
-      train_dataset = ImageDataset_ImageNet(
-        base=hparams.data_base, wids_0=wids_0, wids_1=wids_1, eval_train_augment_rate=hparams.eval_train_augment_rate, split='train', live_loading=hparams.live_loading)
-      val_dataset = ImageDataset_ImageNet(
-        base=hparams.data_base, wids_0=wids_0, wids_1=wids_1, eval_train_augment_rate=hparams.eval_train_augment_rate, split='val', live_loading=hparams.live_loading)
-    else:
-      train_dataset = ImageDataset(hparams.data_train_eval_imaging, hparams.labels_train_eval_imaging, hparams.delete_segmentation, hparams.eval_train_augment_rate, grab_arg_from_checkpoint(hparams, 'img_size'), target=hparams.target, train=True, live_loading=hparams.live_loading, task=hparams.task)
-      val_dataset = ImageDataset(hparams.data_val_eval_imaging, hparams.labels_val_eval_imaging, hparams.delete_segmentation, hparams.eval_train_augment_rate, grab_arg_from_checkpoint(hparams, 'img_size'), target=hparams.target, train=False, live_loading=hparams.live_loading, task=hparams.task)
+    train_dataset = ImageDataset(hparams.data_train_eval_imaging, hparams.labels_train_eval_imaging, hparams.delete_segmentation, hparams.eval_train_augment_rate, grab_arg_from_checkpoint(hparams, 'img_size'), target=hparams.target, train=True, live_loading=hparams.live_loading, task=hparams.task)
+    val_dataset = ImageDataset(hparams.data_val_eval_imaging, hparams.labels_val_eval_imaging, hparams.delete_segmentation, hparams.eval_train_augment_rate, grab_arg_from_checkpoint(hparams, 'img_size'), target=hparams.target, train=False, live_loading=hparams.live_loading, task=hparams.task)
   elif hparams.datatype == 'tabular':
     train_dataset = TabularDataset(hparams.data_train_eval_tabular, hparams.labels_train_eval_tabular, hparams.eval_one_hot, hparams.field_lengths_tabular)
     val_dataset = TabularDataset(hparams.data_val_eval_tabular, hparams.labels_val_eval_tabular, hparams.eval_one_hot, hparams.field_lengths_tabular)
@@ -125,12 +116,3 @@ def evaluate(hparams, wandb_logger):
     model.freeze()
 
     trainer.test(model, test_loader, ckpt_path=os.path.join(logdir,f'checkpoint_best_{hparams.eval_metric}.ckpt'))
-    del test_loader
-    del test_dataset
-
-  del model
-  del trainer
-  del train_loader
-  del val_loader
-  del train_dataset
-  del val_dataset

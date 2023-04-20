@@ -11,14 +11,9 @@ from utils.ssl_online_custom import SSLOnlineEvaluator
 
 from datasets.ContrastiveImagingAndTabularDataset import ContrastiveImagingAndTabularDataset
 from datasets.ContrastiveImageDataset import ContrastiveImageDataset
-from datasets.ContrastiveImageDataset_ImageNet import ContrastiveImageDataset_ImageNet
-from datasets.ContrastiveImageDataset_SwAV import ContrastiveImageDataset_SwAV
 from datasets.ContrastiveTabularDataset import ContrastiveTabularDataset
 
 from models.MultimodalSimCLR import MultimodalSimCLR
-from models.MultimodalBYOL import MultimodalBYOL
-from models.MultimodalSimCLR_MultipleLR import MultimodalSimCLR_MultipleLR
-from models.MultimodalSimSiam import MultimodalSimSiam
 from models.SimCLR import SimCLR
 from models.SwAV_Bolt import SwAV
 from models.BYOL_Bolt import BYOL
@@ -44,31 +39,14 @@ def load_datasets(hparams):
   elif hparams.datatype == 'imaging':
     transform = grab_image_augmentations(hparams.img_size, hparams.target, hparams.crop_scale_lower)
     hparams.transform = transform.__repr__()
-    if hparams.target == 'ImageNet':
-      wids_0 = grab_wids(hparams.majority_class)
-      wids_1 = grab_wids(hparams.minority_class)
-      train_dataset = ContrastiveImageDataset_ImageNet(
-        base=hparams.data_base, wids_0=wids_0, wids_1=wids_1, augmentation_rate=1, split='train', live_loading=hparams.live_loading)
-      val_dataset = ContrastiveImageDataset_ImageNet(
-        base=hparams.data_base, wids_0=wids_0, wids_1=wids_1, augmentation_rate=0, split='val', live_loading=hparams.live_loading)
-    #elif hparams.loss.lower() == 'swav':
-    #  train_dataset = ContrastiveImageDataset_SwAV(
-    #    data=hparams.data_train_imaging, labels=hparams.labels_train, 
-    #    transform=transform, mini_transform=grab_image_augmentations(hparams.img_size//2, hparams.target), delete_segmentation=hparams.delete_segmentation, 
-    #    img_size=hparams.img_size, live_loading=hparams.live_loading)
-    #  val_dataset = ContrastiveImageDataset_SwAV(
-    #    data=hparams.data_val_imaging, labels=hparams.labels_val, 
-    #    transform=transform, mini_transform=grab_image_augmentations(hparams.img_size//2, hparams.target), delete_segmentation=hparams.delete_segmentation, 
-    #    img_size=hparams.img_size, live_loading=hparams.live_loading)
-    else:
-      train_dataset = ContrastiveImageDataset(
-        data=hparams.data_train_imaging, labels=hparams.labels_train, 
-        transform=transform, delete_segmentation=hparams.delete_segmentation, 
-        augmentation_rate=hparams.augmentation_rate, img_size=hparams.img_size, live_loading=hparams.live_loading)
-      val_dataset = ContrastiveImageDataset(
-        data=hparams.data_val_imaging, labels=hparams.labels_val, 
-        transform=transform, delete_segmentation=hparams.delete_segmentation, 
-        augmentation_rate=hparams.augmentation_rate, img_size=hparams.img_size, live_loading=hparams.live_loading)
+    train_dataset = ContrastiveImageDataset(
+      data=hparams.data_train_imaging, labels=hparams.labels_train, 
+      transform=transform, delete_segmentation=hparams.delete_segmentation, 
+      augmentation_rate=hparams.augmentation_rate, img_size=hparams.img_size, live_loading=hparams.live_loading)
+    val_dataset = ContrastiveImageDataset(
+      data=hparams.data_val_imaging, labels=hparams.labels_val, 
+      transform=transform, delete_segmentation=hparams.delete_segmentation, 
+      augmentation_rate=hparams.augmentation_rate, img_size=hparams.img_size, live_loading=hparams.live_loading)
   elif hparams.datatype == 'tabular':
     train_dataset = ContrastiveTabularDataset(hparams.data_train_tabular, hparams.labels_train, hparams.corruption_rate, hparams.field_lengths_tabular, hparams.one_hot)
     val_dataset = ContrastiveTabularDataset(hparams.data_val_tabular, hparams.labels_val, hparams.corruption_rate, hparams.field_lengths_tabular, hparams.one_hot)
@@ -80,14 +58,7 @@ def load_datasets(hparams):
 
 def select_model(hparams, train_dataset):
   if hparams.datatype == 'multimodal':
-    if hparams.loss.lower() == 'byol':
-      model = MultimodalBYOL(hparams)
-    elif hparams.loss.lower() == 'simsiam':
-      model = MultimodalSimSiam(hparams)
-    elif hparams.multiple_lr:
-      model = MultimodalSimCLR_MultipleLR(hparams)
-    else:
-      model = MultimodalSimCLR(hparams)
+    model = MultimodalSimCLR(hparams)
   elif hparams.datatype == 'imaging':
     if hparams.loss.lower() == 'byol':
       model = BYOL(**hparams)

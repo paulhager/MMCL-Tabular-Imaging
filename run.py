@@ -22,7 +22,7 @@ torch.backends.cudnn.determinstic = True
 torch.backends.cudnn.benchmark = False
 
 #@hydra.main(config_path='./configs', config_name='config', version_base=None)
-def run(args: DictConfig, queue: Queue = None):
+def run(args: DictConfig):
   pl.seed_everything(args.seed)
   args = prepend_paths(args)
   time.sleep(random.randint(1,5)) # Prevents multiple runs getting the same version when launching many jobs at once
@@ -73,8 +73,6 @@ def run(args: DictConfig, queue: Queue = None):
 
   wandb.finish()
   del wandb_logger
-  if queue:
-    queue.put(args)
 
 @property
 def exception(self):
