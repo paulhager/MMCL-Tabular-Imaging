@@ -10,7 +10,7 @@ To run, execute `python run.py`.
 
 ### Arguments - Command Line
 
-If pretraining, pass `pretrain=True` and `datatype={imaging|multimodal|tabular}` for the desired pretraining type. `multimodal` uses our strategy from the paper, `tabular` uses SCARF, and `imaging` can be specified with the `loss` argument. Default is SimCLR, other options are byol, simsiam, swav, and barlowtwins.
+If pretraining, pass `pretrain=True` and `datatype={imaging|multimodal|tabular}` for the desired pretraining type. `multimodal` uses our strategy from the paper, `tabular` uses SCARF, and `imaging` can be specified with the `loss` argument. Default is SimCLR, other options are byol, simsiam, and barlowtwins.
 
 If you do not pass `pretrain=True`, the model will train fully supervised with the data modality specified in `datatype`, either `tabular` or `imaging`.
 
@@ -30,5 +30,5 @@ Path to folder containing data is set through the `data_base` argument and then 
 - `delete_segmentation` deletes the first channel of a three channel image (historical reasons) and should typically be left to false.
 - If `weights` is set, during finetuning a weighted sampled will be used instead of assuming the evaluation train data has been properly balanced
 - `eval_metric` supports `acc` for accuracy (top-1) and `auc` (for unbalanced data)
-- If doing multimodal pretraining or tabular pretraining (SCARF), the tabular data should be provided as *NOT* one-hot encoded so the sampling from the empirical marginal distribution works correctly. You must provide a file `field_lengths_tabular` which is an array that in the order of your tabular columns specifies how many options there are for that field. Continuous fields ar should thus be set to 1 (i.e. no one-hot encoding necessary), while categorical fields should specify how many columns should be created for the one_hot encoding  
+- If doing multimodal pretraining or tabular pretraining (SCARF), the tabular data should be provided as *NOT* one-hot encoded so the sampling from the empirical marginal distribution works correctly. You must provide a file `field_lengths_tabular` which is an array that in the order of your tabular columns specifies how many options there are for that field. Continuous fields should thus be set to 1 (i.e. no one-hot encoding necessary), while categorical fields should specify how many columns should be created for the one_hot encoding  
 
