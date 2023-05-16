@@ -14,8 +14,7 @@ import torch.nn as nn
 class SupConLoss(nn.Module):
     """Supervised Contrastive Learning: https://arxiv.org/pdf/2004.11362.pdf.
     It also supports the unsupervised contrastive loss in SimCLR"""
-    def __init__(self, cosine_similarity_matrix_path: str, temperature: float, 
-                contrast_mode: str='all', threshold: float=0.9):
+    def __init__(self, temperature: float, contrast_mode: str='all'):
         super(SupConLoss, self).__init__()
         self.temperature = temperature
         self.contrast_mode = contrast_mode

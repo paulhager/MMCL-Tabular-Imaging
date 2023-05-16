@@ -26,11 +26,11 @@ class SimCLR(Pretraining):
     nclasses_val = hparams.batch_size*2-1
     self.criterion_val = NTXentLoss(temperature=self.hparams.temperature)
     if self.hparams.loss.lower() == 'remove_fn':
-      self.criterion_train = RemoveFNLoss(temperature=self.hparams.temperature, cosine_similarity_matrix_path=self.hparams.train_similarity_matrix, threshold=self.hparams.threshold)
+      self.criterion_train = RemoveFNLoss(temperature=self.hparams.temperature)
     elif self.hparams.loss.lower() == 'binary_remove_fn':
       self.criterion_train = BinaryRemoveFNLoss(temperature=self.hparams.temperature, lambda_0=self.hparams.lambda_0)
     elif self.hparams.loss.lower() == 'supcon':
-      self.criterion_train = SupConLoss(temperature=self.hparams.temperature, contrast_mode='all', cosine_similarity_matrix_path=self.hparams.train_similarity_matrix, threshold=self.hparams.threshold)
+      self.criterion_train = SupConLoss(temperature=self.hparams.temperature, contrast_mode='all')
     elif self.hparams.loss.lower() == 'binary_supcon':
       self.criterion_train = BinarySupConCLIPLoss(temperature=self.hparams.temperature, lambda_0=self.hparams.lambda_0)
     else:  
