@@ -2,6 +2,16 @@
 
 Please cite our CVPR paper, [Best of Both Worlds: Multimodal Contrastive Learning with Tabular and Imaging Data](https://arxiv.org/abs/2303.14080), if this code was helpful.
 
+```
+@InProceedings{Hager_2023_CVPR,
+    author    = {Hager, Paul and Menten, Martin J. and Rueckert, Daniel},
+    title     = {Best of Both Worlds: Multimodal Contrastive Learning With Tabular and Imaging Data},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2023},
+    pages     = {23924-23935}
+}
+```
 ## Instructions
 
 Install environment using `conda env create --file environment.yaml`. 
