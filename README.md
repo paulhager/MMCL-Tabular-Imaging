@@ -12,6 +12,12 @@ Please cite our CVPR paper, [Best of Both Worlds: Multimodal Contrastive Learnin
     pages     = {23924-23935}
 }
 ```
+
+If you want an overview of the paper checkout:
+- [this podcast episode](https://www.linkedin.com/posts/harpreetsahota204_deeplearning-cvpr2023-computervision-activity-7078096344346738688-m7-C?utm_source=share&utm_medium=member_desktop)
+- [the video abstract](https://www.youtube.com/watch?v=iHVPSMEM6WM)
+
+
 ## Instructions
 
 Install environment using `conda env create --file environment.yaml`. 
