@@ -48,3 +48,12 @@ Path to folder containing data is set through the `data_base` argument and then 
 - `eval_metric` supports `acc` for accuracy (top-1) and `auc` (for unbalanced data)
 - If doing multimodal pretraining or tabular pretraining (SCARF), the tabular data should be provided as *NOT* one-hot encoded so the sampling from the empirical marginal distribution works correctly. You must provide a file `field_lengths_tabular` which is an array that in the order of your tabular columns specifies how many options there are for that field. Continuous fields should thus be set to 1 (i.e. no one-hot encoding necessary), while categorical fields should specify how many columns should be created for the one_hot encoding  
 
+### Data
+
+The UKBB data is semi-private. You can apply for access [here](https://www.ukbiobank.ac.uk/enable-your-research/apply-for-access).
+
+The DVM cars dataset is open-access and can be found [here](https://deepvisualmarketing.github.io/).
+
+Processing steps for the DVM dataset can be found [here](https://github.com/paulhager/MMCL-Tabular-Imaging/blob/main/data/create_dvm_dataset.ipynb).
+
+The exact data splits used in the paper are saved in the [data folder](https://github.com/paulhager/MMCL-Tabular-Imaging/tree/main/data).
