@@ -17,8 +17,8 @@ low_data_splits: ['']
 labels_train: labels_model_all_train_all_views.pt 
 labels_val: labels_model_all_val_all_views.pt 
 
-data_train_imaging: train_paths_all_views_scratch.pt
-data_val_imaging: val_paths_all_views_scratch.pt
+data_train_imaging: train_paths_all_views.pt
+data_val_imaging: val_paths_all_views.pt
 
 data_train_tabular: dvm_features_train_noOH_all_views_physical_jittered_50.csv
 data_val_tabular: dvm_features_val_noOH_all_views_physical_jittered_50.csv
@@ -36,11 +36,11 @@ data_test_eval_tabular: dvm_features_test_noOH_all_views_physical_jittered_50.cs
 labels_test_eval_tabular: labels_model_all_test_all_views.pt 
 
 
-data_train_eval_imaging: train_paths_all_views_scratch.pt
+data_train_eval_imaging: train_paths_all_views.pt
 labels_train_eval_imaging: labels_model_all_train_all_views.pt
 
-data_val_eval_imaging: val_paths_all_views_scratch.pt
+data_val_eval_imaging: val_paths_all_views.pt
 labels_val_eval_imaging: labels_model_all_val_all_views.pt
 
-data_test_eval_imaging: test_paths_all_views_scratch.pt
+data_test_eval_imaging: test_paths_all_views.pt
 labels_test_eval_imaging: labels_model_all_test_all_views.pt
