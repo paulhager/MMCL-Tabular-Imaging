@@ -53,7 +53,7 @@ def evaluate(hparams, wandb_logger):
   drop = ((len(train_dataset)%hparams.batch_size)==1)
 
   sampler = None
-  if hparams.weights:
+  if hparams.weighted_sampler:
     print('Using weighted random sampler(')
     weights_list = [hparams.weights[int(l)] for l in train_dataset.labels]
     sampler = WeightedRandomSampler(weights=weights_list, num_samples=len(weights_list), replacement=True)
