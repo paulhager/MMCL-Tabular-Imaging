@@ -42,7 +42,7 @@ class TabularEmbeddingModel(nn.Module):
     return nn.Sequential(*modules)
 
   def build_projector(self, original_args: Dict) -> nn.Sequential:
-    modules = [nn.ReLU(), nn.Linear(original_args['embedding_dim'], original_args['projection_dim'])]
+    modules = [nn.Linear(original_args['embedding_dim'], original_args['projection_dim'])]
     for _ in range(original_args['projector_num_layers']-1):
       modules.extend([nn.ReLU(), nn.Linear(original_args['projection_dim'], original_args['projection_dim'])])
     return nn.Sequential(*modules)
